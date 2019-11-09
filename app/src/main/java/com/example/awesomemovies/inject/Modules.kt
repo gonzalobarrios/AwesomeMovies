@@ -12,8 +12,14 @@ import com.barriosartola.awesomeapp.data.service.AuthService
 import com.barriosartola.awesomeapp.data.service.NoteService
 import com.barriosartola.awesomeapp.data.source.AppDatabase
 import com.barriosartola.awesomeapp.presentation.view.auth.LoginViewModel
+
+import com.barriosartola.awesomeapp.presentation.view.home.movies.MoviesViewModel
+
 import com.barriosartola.awesomeapp.presentation.view.home.notes.NotesViewModel
+import com.example.awesomemovies.data.repository.MoviesSourceDataRepository
+import com.example.awesomemovies.data.repository.MoviesSourceRepository
 import com.example.awesomemovies.data.repository.movies.MoviesDataStoreFactory
+import com.example.awesomemovies.data.service.MovieService
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -35,23 +41,29 @@ var networkModule = module {
 
     single { RetrofitController(get()) }
     single<Retrofit> { get<RetrofitController>().initRetrofit() }
-    single<NoteService> { get<Retrofit>().create(NoteService::class.java) }
+//    single<NoteService> { get<Retrofit>().create(NoteService::class.java) }
+    single<MovieService> { get<Retrofit>().create(MovieService::class.java) }
+
     single<AuthService> { get<Retrofit>().create(AuthService::class.java) }
 }
 
 var databaseModule = module {
-    single { AppDatabase.getInstance(get()).noteDao() }
+//    single { AppDatabase.getInstance(get()).noteDao()}
+    single {AppDatabase.getInstance(get()).movieDao()}
 }
 
-var notesModule = module {
-    single { NotesDataStoreFactory(get(), get(), get()) }
-    single<NotesSourceRepository> { NotesSourceDataRepository(get()) }
-
-    viewModel { NotesViewModel(get()) }
-}
+//var notesModule = module {
+//    single { NotesDataStoreFactory(get(), get(), get()) }
+//    single<NotesSourceRepository> { NotesSourceDataRepository(get()) }
+//
+//    viewModel { NotesViewModel(get()) }
+//}
 
 var moviesModule = module {
     single { MoviesDataStoreFactory(get(), get(), get()) }
+    single<MoviesSourceRepository> { MoviesSourceDataRepository(get()) }
+
+    viewModel { MoviesViewModel(get()) }
 }
 
 var loginModule = module {

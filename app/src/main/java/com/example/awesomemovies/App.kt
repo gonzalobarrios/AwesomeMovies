@@ -26,7 +26,7 @@ class App : Application() {
         startKoin {
             androidLogger()
             androidContext(this@App)
-            modules(listOf(notesModule, loginModule, networkModule, databaseModule, moviesModule))
+            modules(listOf(loginModule, networkModule, databaseModule, moviesModule))
         }
 
         // Initializing LocalDate backport

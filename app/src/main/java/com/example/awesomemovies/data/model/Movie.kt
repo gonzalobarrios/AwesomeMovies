@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import org.threeten.bp.ZonedDateTime
 
 @Entity
-data class Movie(
+data class Movie (
     @PrimaryKey val id: Int,
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "vote_average") val voteAverage: Double,
