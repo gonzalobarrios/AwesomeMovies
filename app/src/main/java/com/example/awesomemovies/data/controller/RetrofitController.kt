@@ -10,11 +10,11 @@ import java.net.HttpURLConnection
 class RetrofitController(
     private val gsonConverterFactory: GsonConverterFactory
 ) {
-    var accessToken: String? = null
+    var accessToken: String? = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODQ5ODBkNmRhZGUyM2I3NzFmNWNhMzE5YWQxN2I2ZCIsInN1YiI6IjVkYmY0OTg0N2QyYmMxMDAxMTM2YmY1ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ytD5PPcc50EUnHLrT8F567centRWvUNd5s5vui4dvAk"
 
     fun initRetrofit() =
         Retrofit.Builder()
-            .baseUrl("https://mighty-beyond-54626.herokuapp.com/")
+            .baseUrl("https://developers.themoviedb.org/3/")
             .addConverterFactory(gsonConverterFactory)
             .client(httpClient)
             .build()
