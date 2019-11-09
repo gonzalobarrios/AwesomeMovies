@@ -6,10 +6,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import com.barriosartola.awesomeapp.data.controller.RetrofitController
-import com.barriosartola.awesomeapp.inject.databaseModule
-import com.barriosartola.awesomeapp.inject.loginModule
-import com.barriosartola.awesomeapp.inject.networkModule
-import com.barriosartola.awesomeapp.inject.notesModule
+import com.barriosartola.awesomeapp.inject.*
 import com.barriosartola.awesomeapp.presentation.view.accessTokenKey
 import com.barriosartola.awesomeapp.presentation.view.auth.AuthActivity
 import com.jakewharton.threetenabp.AndroidThreeTen
@@ -29,7 +26,7 @@ class App : Application() {
         startKoin {
             androidLogger()
             androidContext(this@App)
-            modules(listOf(notesModule, loginModule, networkModule, databaseModule))
+            modules(listOf(loginModule, networkModule, databaseModule, moviesModule))
         }
 
         // Initializing LocalDate backport

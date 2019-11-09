@@ -14,8 +14,8 @@ import kotlinx.android.synthetic.main.fragment_notes.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NotesFragment : Fragment() {
-    private val adapter = MoviesAdapter()
-    private val notesViewModel: MoviesViewModel by viewModel()
+    private val adapter = NotesAdapter()
+    private val notesViewModel: NotesViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,

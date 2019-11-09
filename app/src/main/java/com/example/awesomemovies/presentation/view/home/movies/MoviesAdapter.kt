@@ -1,39 +1,57 @@
-package com.barriosartola.awesomeapp.presentation.view.home.notes
+package com.barriosartola.awesomeapp.presentation.view.home.movies
 
+import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridView
-import androidx.recyclerview.widget.RecyclerView
+import android.widget.BaseAdapter
 import com.barriosartola.awesomeapp.R
-import com.barriosartola.awesomeapp.data.model.Note
+import com.bumptech.glide.Glide
 import com.example.awesomemovies.data.model.Movie
-import kotlinx.android.synthetic.main.view_note.view.*
-import org.threeten.bp.format.DateTimeFormatter
+import kotlinx.android.synthetic.main.movies_grid_item.view.*
 
-class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
+class MoviesAdapter : BaseAdapter {
+    var context: Context? = null
     var movies = listOf<Movie>()
         set(value) {
             notifyDataSetChanged()
         }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        LayoutInflater.from(parent.context)
-            .inflate(R.layout.view_note, parent, false)
-            .let { view -> MovieViewHolder(view) }
-
-    override fun getItemCount() = movies.size
-
-    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.bind(movies[position])
+    constructor(context: Context) : super() {
+        this.context = context
     }
 
-    inner class MovieViewHolder(itemView: View) : GridView.ViewHolder(itemView) {
-        fun bind(movie: Movie) {
-            itemView.contentTextView.text = movie.content
-            itemView.dateTextView.text = DateTimeFormatter
-                .ofPattern("dd MMMM, yyyy")
-                .format(movie.createdAt)
-        }
+    override fun getCount(): Int {
+        return movies.size
+    }
+
+    override fun getItem(position: Int): Any {
+        return movies[position]
+    }
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+        val item = movies[position]
+        var inflator = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        var gridItemView = inflator.inflate(R.layout.movies_grid_item, null)
+        gridItemView.movie_title.text = item.title
+
+        // Ser user image
+        var imageView = gridItemView.movie_image
+        var ctx = imageView.context
+
+        Glide.with(ctx)
+            .load("MOVIE PICTURE URL")
+            .error(R.drawable.movie_image_place_holder)
+            .into(imageView)
+
+        gridItemView.vote_average.text = item.voteAverage.toString()
+        gridItemView.movie_year.text = item.releaseDate.year.toString()
+
+        return gridItemView
     }
 }
