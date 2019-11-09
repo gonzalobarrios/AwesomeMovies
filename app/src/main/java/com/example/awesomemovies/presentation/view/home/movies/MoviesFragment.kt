@@ -1,4 +1,4 @@
-package com.barriosartola.awesomeapp.presentation.view.home.notes
+package com.barriosartola.awesomeapp.presentation.view.home.movies
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,12 +10,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.barriosartola.awesomeapp.R
 import com.barriosartola.awesomeapp.data.model.Note
 import com.barriosartola.awesomeapp.presentation.helper.visibleIf
+import com.barriosartola.awesomeapp.presentation.view.home.notes.MoviesAdapter
+import com.barriosartola.awesomeapp.presentation.view.home.notes.MoviesViewModel
+import com.example.awesomemovies.data.model.Movie
 import kotlinx.android.synthetic.main.fragment_notes.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class NotesFragment : Fragment() {
+class MoviesFragment : Fragment() {
     private val adapter = MoviesAdapter()
-    private val notesViewModel: MoviesViewModel by viewModel()
+    private val moviesViewModel: MoviesViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,16 +31,16 @@ class NotesFragment : Fragment() {
 
         recyclerView.apply {
             layoutManager = LinearLayoutManager(activity)
-            adapter = this@NotesFragment.adapter
+            adapter = this@MoviesFragment.adapter
         }
 
-        notesViewModel.loadNotes()
-        notesViewModel.notes.observe(viewLifecycleOwner, Observer(this::notesLoaded))
-        notesViewModel.isLoading.observe(viewLifecycleOwner, Observer(this::loadingStateChanged))
+        moviesViewModel.loadNotes()
+        moviesViewModel.movies.observe(viewLifecycleOwner, Observer(this::moviesLoaded))
+        moviesViewModel.isLoading.observe(viewLifecycleOwner, Observer(this::loadingStateChanged))
     }
 
-    private fun notesLoaded(notes: List<Note>) {
-        adapter.notes = notes
+    private fun notesLoaded(movies: List<Movie>) {
+        adapter.movies = movies
     }
 
     private fun loadingStateChanged(isLoading: Boolean) {

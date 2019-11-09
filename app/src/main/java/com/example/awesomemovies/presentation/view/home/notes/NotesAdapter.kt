@@ -9,7 +9,7 @@ import com.barriosartola.awesomeapp.data.model.Note
 import kotlinx.android.synthetic.main.view_note.view.*
 import org.threeten.bp.format.DateTimeFormatter
 
-class NotesAdapter : RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
+class NotesAdapter : RecyclerView.Adapter<MoviesAdapter.NoteViewHolder>() {
     var notes = listOf<Note>()
         set(value) {
             field = value.sortedByDescending { it.createdAt }

@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.barriosartola.awesomeapp.R
-import com.barriosartola.awesomeapp.presentation.view.home.notes.NotesFragment
+import com.barriosartola.awesomeapp.presentation.view.home.notes.MoviesFragment
 import com.barriosartola.awesomeapp.presentation.view.home.profile.ProfileFragment
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -13,12 +13,12 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        showFragment(NotesFragment(), NotesFragmentTag)
+        showFragment(MoviesFragment(), NotesFragmentTag)
         bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
             removeActiveFragment()
 
             when (menuItem.itemId) {
-                R.id.notes -> showFragment(NotesFragment(), NotesFragmentTag)
+                R.id.notes -> showFragment(MoviesFragment(), NotesFragmentTag)
                 R.id.profile -> showFragment(ProfileFragment(), ProfileFragmentTag)
             }
 
