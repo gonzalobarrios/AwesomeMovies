@@ -13,6 +13,7 @@ import com.barriosartola.awesomeapp.data.service.NoteService
 import com.barriosartola.awesomeapp.data.source.AppDatabase
 import com.barriosartola.awesomeapp.presentation.view.auth.LoginViewModel
 import com.barriosartola.awesomeapp.presentation.view.home.notes.NotesViewModel
+import com.example.awesomemovies.data.repository.movies.MoviesDataStoreFactory
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -47,6 +48,10 @@ var notesModule = module {
     single<NotesSourceRepository> { NotesSourceDataRepository(get()) }
 
     viewModel { NotesViewModel(get()) }
+}
+
+var moviesModule = module {
+    single { MoviesDataStoreFactory(get(), get(), get()) }
 }
 
 var loginModule = module {

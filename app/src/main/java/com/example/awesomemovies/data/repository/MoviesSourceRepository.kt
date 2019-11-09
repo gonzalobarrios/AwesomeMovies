@@ -4,5 +4,5 @@ import com.example.awesomemovies.data.model.Movie
 
 interface MoviesSourceRepository {
 
-    suspend fun getNotes(): List<Movie>
+    suspend fun getMovies(): List<Movie>
 }

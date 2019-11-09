@@ -6,7 +6,7 @@ import com.example.awesomemovies.data.repository.movies.MoviesDataStoreFactory
 
 class MoviesSourceDataRepository (var factory: MoviesDataStoreFactory) : MoviesSourceRepository{
 
-    override suspend fun getNotes(): List<Movie> {
+    override suspend fun getMovies(): List<Movie> {
         return factory.moviesDataStoreFactory.getMovies()
     }
 
