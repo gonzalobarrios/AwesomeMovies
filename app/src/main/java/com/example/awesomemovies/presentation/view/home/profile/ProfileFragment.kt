@@ -32,22 +32,6 @@ class ProfileFragment : Fragment(), CoroutineScope {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        logOut.setOnClickListener { logout() }
     }
 
-    private fun logout() {
-        launch(Dispatchers.IO) {
-            try {
-                authController.logout()
-                withContext(Dispatchers.Main) {
-                    activity?.let {
-                        it.startActivity(Intent(it, AuthActivity::class.java))
-                        it.finish()
-                    }
-                }
-            } catch (error: Exception) {
-
-            }
-        }
-    }
 }

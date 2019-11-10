@@ -15,15 +15,11 @@ class AuthController(
         val response = authService.login(request)
 
         with(response.authToken) {
-            retrofitController.accessToken = this
             sharedPreferences.edit()
                 .putString(accessTokenKey, this)
                 .apply()
         }
     }
 
-    suspend fun logout() {
-        authService.logout()
-        retrofitController.accessToken = null
-    }
+
 }

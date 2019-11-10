@@ -13,7 +13,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        showFragment(MoviesFragment(), NotesFragmentTag)
+        showFragment(MoviesFragment(), MoviesFragmentTag)
         bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
             removeActiveFragment()
 
@@ -46,7 +46,6 @@ class HomeActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val NotesFragmentTag = "NotesFragmentTag"
         private const val ProfileFragmentTag = "ProfileFragmentTag"
 
         private const val MoviesFragmentTag = "MoviesFragmentTag"

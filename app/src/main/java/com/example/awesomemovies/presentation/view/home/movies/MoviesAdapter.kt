@@ -50,7 +50,7 @@ class MoviesAdapter : BaseAdapter {
             .into(imageView)
 
         gridItemView.vote_average.text = item.voteAverage.toString()
-        gridItemView.movie_year.text = item.releaseDate.year.toString()
+        gridItemView.movie_year.text = item.releaseDate.toString()
 
         return gridItemView
     }

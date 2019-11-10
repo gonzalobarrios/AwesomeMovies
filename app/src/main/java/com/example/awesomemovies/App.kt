@@ -34,7 +34,6 @@ class App : Application() {
 
         listenActivityCallbacks()
 
-        retrofitController.accessToken = sharedPreferences.getString(accessTokenKey, null)
     }
 
     private fun listenActivityCallbacks() {

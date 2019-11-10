@@ -10,11 +10,11 @@ import java.net.HttpURLConnection
 class RetrofitController(
     private val gsonConverterFactory: GsonConverterFactory
 ) {
-    var accessToken: String? = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODQ5ODBkNmRhZGUyM2I3NzFmNWNhMzE5YWQxN2I2ZCIsInN1YiI6IjVkYmY0OTg0N2QyYmMxMDAxMTM2YmY1ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ytD5PPcc50EUnHLrT8F567centRWvUNd5s5vui4dvAk"
+    val accessToken: String = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODQ5ODBkNmRhZGUyM2I3NzFmNWNhMzE5YWQxN2I2ZCIsInN1YiI6IjVkYmY0OTg0N2QyYmMxMDAxMTM2YmY1ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ytD5PPcc50EUnHLrT8F567centRWvUNd5s5vui4dvAk"
 
     fun initRetrofit() =
         Retrofit.Builder()
-            .baseUrl("https://developers.themoviedb.org/3/")
+            .baseUrl("https://api.themoviedb.org/3/")
             .addConverterFactory(gsonConverterFactory)
             .client(httpClient)
             .build()
@@ -30,23 +30,16 @@ class RetrofitController(
             .addInterceptor { chain ->
                 val response = chain.proceed(chain.request())
 
-                if (response.code == HttpURLConnection.HTTP_UNAUTHORIZED && accessToken != null) {
-                    App.goToLoginScreen()
-                }
-
                 response
             }
             .addInterceptor { chain ->
-                if (accessToken != null) {
                     val request = chain.request()
                         .newBuilder()
-                        .addHeader("Authorization", accessToken ?: "")
+                        .addHeader("Authorization", "Bearer "+accessToken)
                         .build()
 
                     chain.proceed(request)
-                } else {
-                    chain.proceed(chain.request())
-                }
+
             }
             .build()
 }
