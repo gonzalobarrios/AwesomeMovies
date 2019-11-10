@@ -15,6 +15,7 @@ class MoviesAdapter : BaseAdapter {
     var context: Context? = null
     var movies = listOf<Movie>()
         set(value) {
+            field = value
             notifyDataSetChanged()
         }
 

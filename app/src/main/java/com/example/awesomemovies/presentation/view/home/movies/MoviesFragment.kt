@@ -10,6 +10,7 @@ import com.barriosartola.awesomeapp.R
 import com.barriosartola.awesomeapp.presentation.helper.visibleIf
 import com.example.awesomemovies.data.model.Movie
 import kotlinx.android.synthetic.main.main_fragment.*
+import kotlinx.android.synthetic.main.movies_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MoviesFragment : Fragment() {
@@ -20,13 +21,19 @@ class MoviesFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = inflater.inflate(R.layout.movies_fragment, container, false)
+    ): View {
+
+        adapter = MoviesAdapter(context!!)
+
+        return inflater.inflate(R.layout.movies_fragment, container, false)
+
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         // Init adapter
-        adapter = MoviesAdapter(context!!)
+        movies_grid.adapter = adapter
 
         moviesViewModel.loadMovies()
         moviesViewModel.movies.observe(viewLifecycleOwner, Observer(this::moviesLoaded))

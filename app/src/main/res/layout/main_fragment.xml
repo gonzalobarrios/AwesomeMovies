@@ -8,42 +8,5 @@
     tools:context=".MainFragment"
     android:background="@color/design_default_color_primary_dark">
 
-    <ImageView
-        android:id="@+id/header_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/colorPrimary"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <SearchView
-        android:id="@+id/search_bar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="30dp"
-        android:goIcon="@android:drawable/ic_menu_search"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header_image"
-        android:background="@color/cardview_light_background"/>
-
-    <GridView
-        android:id="@+id/movies_grid"
-        android:layout_height="0dp"
-        android:layout_width="0dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar"
-        android:numColumns="2"
-        android:background="@color/cardview_light_background" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
