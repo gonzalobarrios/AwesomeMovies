@@ -10,4 +10,8 @@ class MoviesSourceDataRepository (var factory: MoviesDataStoreFactory) : MoviesS
         return factory.moviesDataStoreFactory.getMovies()
     }
 
+    override suspend fun searchMovies(query: String): List<Movie> {
+        return factory.moviesDataStoreFactory.searchMovies(query)
+    }
+
 }
