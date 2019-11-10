@@ -46,7 +46,7 @@ class MoviesAdapter : BaseAdapter {
         var ctx = imageView.context
 
         Glide.with(ctx)
-            .load("https://image.tmdb.org/t/p/original/" + item.posterPath)
+            .load("https://image.tmdb.org/t/p/w185/" + item.posterPath)
             .error(R.drawable.movie_image_place_holder)
             .into(imageView)
 

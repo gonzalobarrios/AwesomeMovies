@@ -3,18 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
-    android:layout_width="160dp"
-    android:layout_height="250dp"
-    android:padding="10dp"
-    android:gravity="center">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardview_light_background"
+    android:bottomLeftRadius="12dp"
+    android:bottomRightRadius="12dp"
+    android:gravity="center"
+    android:topLeftRadius="12dp"
+    android:topRightRadius="12dp">
+
 
     <ImageView
         android:id="@+id/movie_image"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
         android:src="@mipmap/ic_launcher"
         app:layout_constraintBottom_toTopOf="@+id/movie_title"
-        app:layout_constraintEnd_toEndOf="@+id/movie_title"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,8 +29,6 @@
         android:id="@+id/movie_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
         android:gravity="center"
         android:lines="2"
         android:text="Movie"

@@ -40,11 +40,14 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:horizontalSpacing="20dp"
+        android:verticalSpacing="20dp"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_bar"
         android:numColumns="2"
-        android:background="@color/cardview_light_background" />
+        android:background="@color/design_default_color_primary_dark" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

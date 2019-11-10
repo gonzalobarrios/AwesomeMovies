@@ -1,11 +1,13 @@
 package com.example.awesomemovies.data.service
 
-import com.barriosartola.awesomeapp.data.model.Note
-import com.example.awesomemovies.data.model.Movie
-import com.example.awesomemovies.data.service.response.DiscoverResponse
+import com.example.awesomemovies.data.service.response.MoviesResultResponse
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface MovieService {
     @GET("discover/movie")
-    suspend fun discoverMovies(): DiscoverResponse
+    suspend fun discoverMovies(): MoviesResultResponse
+
+    @GET("search/movie")
+    suspend fun searchMovies(@Query ("query") query: String): MoviesResultResponse
 }

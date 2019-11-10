@@ -23,7 +23,13 @@ class MoviesFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = inflater.inflate(R.layout.movies_fragment, container, false)
+    ): View {
+
+        adapter = MoviesAdapter(context!!)
+
+        return inflater.inflate(R.layout.movies_fragment, container, false)
+
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -33,7 +39,6 @@ class MoviesFragment : Fragment() {
         movies_grid.adapter = adapter
 
         setupSearchBar()
-
         moviesViewModel.loadMovies()
         moviesViewModel.movies.observe(viewLifecycleOwner, Observer(this::moviesLoaded))
         moviesViewModel.isLoading.observe(viewLifecycleOwner, Observer(this::loadingStateChanged))
@@ -52,12 +57,13 @@ class MoviesFragment : Fragment() {
         search_bar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextChange(newText: String): Boolean {
-                
+                moviesViewModel.searchMovies(newText)
                 return false
             }
 
             override fun onQueryTextSubmit(query: String): Boolean {
-                // task HERE
+                moviesViewModel.searchMovies(query)
+                search_bar.clearFocus();
                 return false
             }
 
