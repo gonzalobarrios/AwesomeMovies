@@ -35,4 +35,20 @@ class MoviesViewModel(private val repository: MoviesSourceRepository) : ViewMode
             }
         }
     }
+
+    fun searchMovies(text: String) {
+        launch(Dispatchers.IO) {
+            try {
+                val movies = repository.searchMovies(text)
+                if (!movies.isEmpty()) {
+                    localMovies.postValue(movies)
+                }
+
+            } catch (error: Exception) {
+                val a = error
+            } finally {
+                localIsLoading.postValue(false)
+            }
+        }
+    }
 }
