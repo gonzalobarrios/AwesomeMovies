@@ -20,10 +20,4 @@ interface MovieDao {
     @Update
     suspend fun update(movie: Movie)
 
-    @Transaction
-    suspend fun insertOrUpdate(movie: Movie) {
-        if (insert(movie).equals(-1L)) {
-            update(movie)
-        }
-    }
 }

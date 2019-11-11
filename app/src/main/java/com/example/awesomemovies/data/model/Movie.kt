@@ -9,9 +9,6 @@ data class Movie (
     @ColumnInfo(name = "vote_average") val voteAverage: Double,
     @ColumnInfo(name = "poster_path") val posterPath: String,
     @ColumnInfo(name = "overview") val overview: String,
-    @ColumnInfo(name = "release_date") val releaseDate: String,
-    @Embedded
-    val genres: List<Genre>?
-) {
+    @ColumnInfo(name = "release_date") val releaseDate: String) {
 
 }
