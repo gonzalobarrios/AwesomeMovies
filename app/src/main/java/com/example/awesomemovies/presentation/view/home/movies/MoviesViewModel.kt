@@ -39,7 +39,7 @@ class MoviesViewModel(private val repository: MoviesSourceRepository) : ViewMode
     fun searchMovies(text: String) {
         launch(Dispatchers.IO) {
             try {
-                val movies = repository.searchMovies(text)
+                val movies = repository.searchMovies(text, 0)
                 if (!movies.isEmpty()) {
                     localMovies.postValue(movies)
                 }
