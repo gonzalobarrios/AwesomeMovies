@@ -1,6 +1,5 @@
 package com.example.awesomemovies.data.repository.movies
 
-import android.app.DownloadManager
 import com.example.awesomemovies.data.dao.MovieDao
 import com.example.awesomemovies.data.model.Movie
 import com.example.awesomemovies.data.service.MovieService
@@ -24,6 +23,6 @@ class CloudMoviesDataStore (private val movieService: MovieService, private val 
     }
 
     private suspend fun saveMovies(movies: List<Movie>){
-        movieDao.insert(*movies.toTypedArray())
+        movieDao.controlledInsert(*movies.toTypedArray())
     }
 }

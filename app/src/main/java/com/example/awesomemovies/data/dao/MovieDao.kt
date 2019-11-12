@@ -17,7 +17,17 @@ interface MovieDao {
     @Delete
     suspend fun delete(movie: Movie)
 
+
+    @Query("DELETE FROM movie where id NOT IN (SELECT id from movie ORDER BY id DESC LIMIT :max)")
+    suspend fun deleteWhenMax(max: Int)
+
     @Update
     suspend fun update(movie: Movie)
+
+    @Transaction
+    suspend fun controlledInsert(vararg movie: Movie) {
+        insert(*movie)
+        deleteWhenMax(300)
+    }
 
 }

@@ -46,13 +46,14 @@ class MoviesAdapter : BaseAdapter {
         var ctx = imageView.context
 
         Glide.with(ctx)
-            .load("MOVIE PICTURE URL")
+            .load("https://image.tmdb.org/t/p/w185/" + item.posterPath)
             .error(R.drawable.movie_image_place_holder)
             .into(imageView)
 
-        gridItemView.vote_average.text = item.voteAverage.toString()
-        gridItemView.movie_year.text = item.releaseDate.toString()
+        gridItemView.vote_average.text = "★" + item.voteAverage.toString()
+        gridItemView.movie_year.text = item.releaseDate.toString().take(4)
 
         return gridItemView
     }
+
 }
