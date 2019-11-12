@@ -1,8 +1,6 @@
 package com.example.awesomemovies.data.model
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 
 @Entity
 data class Movie (
@@ -11,7 +9,6 @@ data class Movie (
     @ColumnInfo(name = "vote_average") val voteAverage: Double,
     @ColumnInfo(name = "poster_path") val posterPath: String,
     @ColumnInfo(name = "overview") val overview: String,
-    @ColumnInfo(name = "release_date") val releaseDate: String
-) {
+    @ColumnInfo(name = "release_date") val releaseDate: String) {
 
 }

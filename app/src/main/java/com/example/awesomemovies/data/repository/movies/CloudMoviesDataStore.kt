@@ -14,8 +14,8 @@ class CloudMoviesDataStore (private val movieService: MovieService, private val 
         return movies
     }
 
-    override suspend fun searchMovies(query: String): List<Movie> {
-        val movies = movieService.searchMovies(query).results
+    override suspend fun searchMovies(query: String, voteAverage: Int?): List<Movie> {
+        val movies = movieService.searchMovies(query, voteAverage).results
         if(movies.isNotEmpty()){
             saveMovies(movies)
         }

@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.barriosartola.awesomeapp.data.helper.converter.Converters
+import com.example.awesomemovies.data.dao.GenreDao
 import com.example.awesomemovies.data.dao.MovieDao
 import com.example.awesomemovies.data.model.Movie
 
@@ -13,6 +14,8 @@ import com.example.awesomemovies.data.model.Movie
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract  fun movieDao(): MovieDao
+    abstract  fun genreDao(): GenreDao
+
 //    abstract fun noteDao(): NoteDao
 
 //    companion object {
@@ -39,7 +42,7 @@ abstract class AppDatabase : RoomDatabase() {
     companion object {
         private val LOG_TAG = AppDatabase::class.java.canonicalName
         private val LOCK = Any()
-        private val DATABASE_NAME = "personlist"
+        private val DATABASE_NAME = "moviedb"
         private var instance: AppDatabase? = null
 
         fun getInstance(context: Context): AppDatabase {

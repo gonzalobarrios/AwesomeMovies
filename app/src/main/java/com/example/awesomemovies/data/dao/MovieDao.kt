@@ -29,4 +29,5 @@ interface MovieDao {
         insert(*movie)
         deleteWhenMax(300)
     }
+
 }
