@@ -36,7 +36,7 @@ class MoviesViewModel(private val repository: MoviesSourceRepository) : ViewMode
         }
     }
 
-    fun searchMovies(text: String) {
+    fun searchMovies(text: String, average: Int) {
         launch(Dispatchers.IO) {
             try {
                 val movies = repository.searchMovies(text, 0)
