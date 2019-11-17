@@ -4,13 +4,13 @@
     <item
         android:id="@+id/notes"
         android:icon="@drawable/ic_notes"
-        android:title="@string/notes"
+        android:title="@string/movies"
         />
 
     <item
         android:id="@+id/profile"
-        android:icon="@drawable/ic_person"
-        android:title="@string/profile"
+        android:icon="@drawable/ic_hearth"
+        android:title="@string/favorites"
         />
 
 </menu>
