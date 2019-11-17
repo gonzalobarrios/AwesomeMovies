@@ -20,7 +20,7 @@ open class MoviesDataStoreFactory(
         set(value) {}
 
     private fun createDataSourceFactory() = if (networkingManager.isNetworkOnline()) {
-        CloudMoviesDataStore(service, dao)
+        CloudMoviesDataStore(service)
     } else {
         DatabaseMovieDataStore(dao, movieGenreDataStore)
     }
