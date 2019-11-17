@@ -9,12 +9,15 @@ import com.example.awesomemovies.data.model.Genre
 @Dao
 interface GenreDao {
 
-//    @Query("SELECT * FROM genre")
-//    suspend fun getAll(): List<Genre>
-//
-//    @Insert
-//    suspend fun insertAll(vararg genres: Genre)
-//
-//    @Delete
-//    suspend fun delete(genre: Genre)
+    @Query("SELECT * FROM genre")
+    suspend fun getAll(): List<Genre>
+
+    @Query("SELECT * FROM genre WHERE id IS :id")
+    suspend fun get(id: Int): Genre
+
+    @Insert
+    suspend fun insertAll(vararg genres: Genre)
+
+    @Delete
+    suspend fun delete(genre: Genre)
 }
