@@ -21,6 +21,7 @@ import com.example.awesomemovies.data.repository.MoviesSourceDataRepository
 import com.example.awesomemovies.data.repository.MoviesSourceRepository
 import com.example.awesomemovies.data.repository.genres.CloudGenreDataStore
 import com.example.awesomemovies.data.repository.genres.DatabaseGenreDataStore
+import com.example.awesomemovies.data.repository.movies.CloudMoviesDataStore
 import com.example.awesomemovies.data.repository.movies.DatabaseMovieGenreDataStore
 import com.example.awesomemovies.data.repository.movies.MoviesDataStoreFactory
 import com.example.awesomemovies.data.service.GenreService
@@ -62,6 +63,7 @@ var databaseModule = module {
 var moviesModule = module {
     single { MoviesDataStoreFactory(get(), get(), get(), get()) }
     single<MoviesSourceRepository> { MoviesSourceDataRepository(get()) }
+    single { CloudMoviesDataStore(get(),get())}
     viewModel { MoviesViewModel(get()) }
 }
 

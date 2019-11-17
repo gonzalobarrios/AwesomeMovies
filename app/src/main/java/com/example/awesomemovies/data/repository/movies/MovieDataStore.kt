@@ -3,6 +3,6 @@ import com.example.awesomemovies.data.model.Movie
 
 interface MovieDataStore {
     suspend fun getMovies(): List<Movie>
-    suspend fun searchMovies(query: String, voteAverage: Int?): List<Movie>
+    suspend fun searchMovies(query: String): List<Movie>
 
 }
