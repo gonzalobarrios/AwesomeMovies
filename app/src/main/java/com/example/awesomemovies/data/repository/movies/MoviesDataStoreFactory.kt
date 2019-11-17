@@ -8,7 +8,8 @@ import com.example.awesomemovies.data.service.MovieService
 open class MoviesDataStoreFactory(
     var service: MovieService,
     var dao: MovieDao,
-    var networkingManager: NetworkingManager
+    var networkingManager: NetworkingManager,
+    var movieGenreDataStore: DatabaseMovieGenreDataStore
 ) {
 
     open var moviesDataStoreFactory: MovieDataStore
@@ -20,6 +21,6 @@ open class MoviesDataStoreFactory(
     private fun createDataSourceFactory() = if (networkingManager.isNetworkOnline()) {
         CloudMoviesDataStore(service, dao)
     } else {
-        DatabaseMovieDataStore(dao)
+        DatabaseMovieDataStore(dao, movieGenreDataStore)
     }
 }

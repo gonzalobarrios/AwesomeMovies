@@ -8,13 +8,17 @@ import androidx.room.TypeConverters
 import com.barriosartola.awesomeapp.data.helper.converter.Converters
 import com.example.awesomemovies.data.dao.GenreDao
 import com.example.awesomemovies.data.dao.MovieDao
+import com.example.awesomemovies.data.dao.MovieGenreJoinDao
+import com.example.awesomemovies.data.model.Genre
 import com.example.awesomemovies.data.model.Movie
+import com.example.awesomemovies.data.model.MovieGenreJoin
 
-@Database(entities = [Movie::class], version = 1, exportSchema = false)
+@Database(entities = [Movie::class, Genre::class, MovieGenreJoin::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract  fun movieDao(): MovieDao
     abstract  fun genreDao(): GenreDao
+    abstract  fun movieGenreJoinDao(): MovieGenreJoinDao
 
 //    abstract fun noteDao(): NoteDao
 
