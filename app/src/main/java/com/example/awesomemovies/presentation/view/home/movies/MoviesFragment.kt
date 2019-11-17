@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import com.barriosartola.awesomeapp.R
 import com.example.awesomemovies.data.model.Movie
 import kotlinx.android.synthetic.main.movies_fragment.*
+import kotlinx.android.synthetic.main.movies_grid.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MoviesFragment : Fragment() {

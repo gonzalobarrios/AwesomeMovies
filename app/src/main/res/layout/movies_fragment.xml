@@ -101,20 +101,7 @@
             android:tint="@android:color/darker_gray" />
     </LinearLayout>
 
-    <GridView
-        android:id="@+id/movies_grid"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@android:color/transparent"
-        android:gravity="center"
-        android:horizontalSpacing="20dp"
-        android:numColumns="2"
-        android:verticalSpacing="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/starView" />
+    <include
+        layout="@layout/movies_grid" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
