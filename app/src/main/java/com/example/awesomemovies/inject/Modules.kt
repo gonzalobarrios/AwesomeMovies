@@ -19,10 +19,14 @@ import com.example.awesomemovies.data.repository.genres.DatabaseGenreDataStore
 import com.example.awesomemovies.data.repository.genres.GenreDataStoreFactory
 import com.example.awesomemovies.data.repository.movies.CloudMoviesDataStore
 import com.example.awesomemovies.data.repository.moviegenrejoin.DatabaseMovieGenreDataStore
+import com.example.awesomemovies.data.repository.movies.DatabaseMovieDataStore
 import com.example.awesomemovies.data.repository.movies.MoviesDataStoreFactory
+import com.example.awesomemovies.data.repository.reviews.CloudReviewDataStore
 import com.example.awesomemovies.data.service.GenreService
 import com.example.awesomemovies.data.service.MovieService
 import com.example.awesomemovies.presentation.view.MovieDetail.MovieDetailViewModel
+import com.example.awesomemovies.data.service.ReviewService
+import com.example.awesomemovies.presentation.view.home.profile.FavoriteModel
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -48,6 +52,8 @@ var networkModule = module {
     single<MovieService> { get<Retrofit>().create(MovieService::class.java) }
     single<AuthService> { get<Retrofit>().create(AuthService::class.java) }
     single<GenreService> { get<Retrofit>().create(GenreService::class.java)}
+    single<ReviewService> { get<Retrofit>().create(ReviewService::class.java)}
+
 
 }
 
@@ -60,9 +66,15 @@ var databaseModule = module {
 var moviesModule = module {
     single { MoviesDataStoreFactory(get(), get(), get(), get()) }
     single<MoviesSourceRepository> { MoviesSourceDataRepository(get()) }
-    single { CloudMoviesDataStore(get(),get())}
-    viewModel { MovieDetailViewModel(get())}
+    single { CloudMoviesDataStore(get())}
+    single { DatabaseMovieDataStore(get (), get ())}
     viewModel { MoviesViewModel(get()) }
+    viewModel { FavoriteModel(get()) }
+    viewModel { MovieDetailViewModel(get())}
+}
+
+var reviewsModule = module {
+    single {CloudReviewDataStore(get())}
 }
 
 var movieGenreModule = module {
