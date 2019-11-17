@@ -22,6 +22,7 @@ import com.example.awesomemovies.data.repository.moviegenrejoin.DatabaseMovieGen
 import com.example.awesomemovies.data.repository.movies.MoviesDataStoreFactory
 import com.example.awesomemovies.data.service.GenreService
 import com.example.awesomemovies.data.service.MovieService
+import com.example.awesomemovies.presentation.view.MovieDetail.MovieDetailViewModel
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -60,6 +61,7 @@ var moviesModule = module {
     single { MoviesDataStoreFactory(get(), get(), get(), get()) }
     single<MoviesSourceRepository> { MoviesSourceDataRepository(get()) }
     single { CloudMoviesDataStore(get(),get())}
+    viewModel { MovieDetailViewModel(get())}
     viewModel { MoviesViewModel(get()) }
 }
 

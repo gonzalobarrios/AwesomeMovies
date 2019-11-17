@@ -52,6 +52,10 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
     implementation "androidx.room:room-runtime:2.2.1"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.navigation:navigation-fragment:2.0.0'
+    implementation 'androidx.navigation:navigation-ui:2.0.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.0.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.0.0'
     kapt "androidx.room:room-compiler:2.2.1"
     implementation "androidx.room:room-ktx:2.2.1"
     implementation 'org.koin:koin-android:2.0.1'

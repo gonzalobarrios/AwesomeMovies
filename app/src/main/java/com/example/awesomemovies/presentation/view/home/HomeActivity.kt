@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.barriosartola.awesomeapp.R
 import com.barriosartola.awesomeapp.presentation.view.home.movies.MoviesFragment
 import com.barriosartola.awesomeapp.presentation.view.home.profile.ProfileFragment
+import com.example.awesomemovies.presentation.view.MovieDetail.MovieDetailFragment
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
@@ -46,8 +47,8 @@ class HomeActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val ProfileFragmentTag = "ProfileFragmentTag"
 
+        private const val ProfileFragmentTag = "ProfileFragmentTag"
         private const val MoviesFragmentTag = "MoviesFragmentTag"
     }
 }
