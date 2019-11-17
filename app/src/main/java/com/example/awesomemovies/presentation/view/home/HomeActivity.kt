@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.barriosartola.awesomeapp.R
 import com.barriosartola.awesomeapp.presentation.view.home.movies.MoviesFragment
-import com.barriosartola.awesomeapp.presentation.view.home.profile.ProfileFragment
+import com.barriosartola.awesomeapp.presentation.view.home.profile.FavoriteFragment
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
@@ -19,7 +19,7 @@ class HomeActivity : AppCompatActivity() {
 
             when (menuItem.itemId) {
                 R.id.notes -> showFragment(MoviesFragment(), MoviesFragmentTag)
-                R.id.profile -> showFragment(ProfileFragment(), ProfileFragmentTag)
+                R.id.profile -> showFragment(FavoriteFragment(), ProfileFragmentTag)
             }
 
             true
