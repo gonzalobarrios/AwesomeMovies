@@ -13,7 +13,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.awesomemovies.presentation.view.home.Movies.MoviesActivity"></activity>
+        <activity
+            android:name="com.example.awesomemovies.presentation.view.MovieDetail.MovieDetailActivity"
+            android:label="@string/title_activity_movie_detail"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name="com.example.awesomemovies.presentation.view.MovieDetail.MovieActivity"
+            android:label="@string/title_activity_movie"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="com.example.awesomemovies.presentation.view.home.Movies.MoviesActivity" />
         <activity android:name=".presentation.view.home.HomeActivity" />
         <activity android:name=".presentation.view.auth.AuthActivity" />
         <activity android:name=".presentation.view.MainActivity">

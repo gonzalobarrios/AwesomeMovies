@@ -18,6 +18,7 @@ class MoviesAdapter : BaseAdapter {
             field = value
             notifyDataSetChanged()
         }
+    var onCategoryClicked: (id: Int) -> Unit = {}
 
     constructor(context: Context) : super() {
         this.context = context
@@ -41,7 +42,7 @@ class MoviesAdapter : BaseAdapter {
         var gridItemView = inflator.inflate(R.layout.movies_grid_item, null)
         gridItemView.movie_title.text = item.title
 
-        // Ser user image
+        // Ser movie image
         var imageView = gridItemView.movie_image
         var ctx = imageView.context
 
@@ -52,6 +53,10 @@ class MoviesAdapter : BaseAdapter {
 
         gridItemView.vote_average.text = "★" + item.voteAverage.toString()
         gridItemView.movie_year.text = item.releaseDate.toString().take(4)
+
+        gridItemView.setOnClickListener {
+            onCategoryClicked(item.id)
+        }
 
         return gridItemView
     }

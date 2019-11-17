@@ -24,6 +24,7 @@ import com.example.awesomemovies.data.repository.movies.MoviesDataStoreFactory
 import com.example.awesomemovies.data.repository.reviews.CloudReviewDataStore
 import com.example.awesomemovies.data.service.GenreService
 import com.example.awesomemovies.data.service.MovieService
+import com.example.awesomemovies.presentation.view.MovieDetail.MovieDetailViewModel
 import com.example.awesomemovies.data.service.ReviewService
 import com.example.awesomemovies.presentation.view.home.profile.FavoriteModel
 import com.google.gson.FieldNamingPolicy
@@ -69,6 +70,7 @@ var moviesModule = module {
     single { DatabaseMovieDataStore(get (), get ())}
     viewModel { MoviesViewModel(get()) }
     viewModel { FavoriteModel(get()) }
+    viewModel { MovieDetailViewModel(get())}
 }
 
 var reviewsModule = module {

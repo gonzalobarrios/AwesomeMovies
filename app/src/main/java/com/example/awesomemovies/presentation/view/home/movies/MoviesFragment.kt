@@ -1,5 +1,6 @@
 package com.barriosartola.awesomeapp.presentation.view.home.movies
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +11,9 @@ import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.barriosartola.awesomeapp.R
+import com.barriosartola.awesomeapp.presentation.view.home.HomeActivity
 import com.example.awesomemovies.data.model.Movie
+import com.example.awesomemovies.presentation.view.MovieDetail.MovieDetailActivity
 import kotlinx.android.synthetic.main.movies_fragment.*
 import kotlinx.android.synthetic.main.movies_grid.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -22,6 +25,7 @@ class MoviesFragment : Fragment() {
     private lateinit var starButtons: Array<ImageButton>
     private var searchTriggerEnable = true
     private var filterTriggerEnable = true
+    private val GotoMovieDetailsRequestCode = 1001
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +43,7 @@ class MoviesFragment : Fragment() {
         // Init adapter
         adapter = MoviesAdapter(context!!)
         movies_grid.adapter = adapter
+        adapter.onCategoryClicked = this::onMovieClicked
 
         setupSearchBar()
         setStarActions()
@@ -130,5 +135,20 @@ class MoviesFragment : Fragment() {
             val star = (tag+1)*2
             moviesViewModel.filterMovies(star-2, star)
         }
+    }
+
+    private fun onMovieClicked(id: Int) {
+
+        activity?.let {
+
+            var intent = Intent(it, MovieDetailActivity::class.java)
+
+            if (id != -1) {
+                intent.putExtra(MovieDetailActivity.ARG_MOVIE_ID, id)
+            }
+
+            startActivityForResult(intent, GotoMovieDetailsRequestCode)
+        }
+//        (activity!! as HomeActivity).goToMovieDetail(id)
     }
 }
