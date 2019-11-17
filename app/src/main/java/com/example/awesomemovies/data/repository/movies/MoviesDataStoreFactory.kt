@@ -2,6 +2,7 @@ package com.example.awesomemovies.data.repository.movies
 
 import com.barriosartola.awesomeapp.data.helper.networking.NetworkingManager
 import com.example.awesomemovies.data.dao.MovieDao
+import com.example.awesomemovies.data.repository.moviegenrejoin.DatabaseMovieGenreDataStore
 import com.example.awesomemovies.data.service.MovieService
 
 @Suppress("UNUSED_PARAMETER")

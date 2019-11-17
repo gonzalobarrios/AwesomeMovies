@@ -3,13 +3,13 @@ package com.example.awesomemovies.data.repository
 import com.example.awesomemovies.data.model.Genre
 import com.example.awesomemovies.data.repository.genres.DatabaseGenreDataStore
 
-class GenreSourceDataRepository(var dataStore: DatabaseGenreDataStore){
+class GenreSourceDataRepository(var dataStore: DatabaseGenreDataStore): GenreSourceRepository{
 
-    suspend fun getGenres(): List<Genre> {
+    override suspend fun getGenres(): List<Genre> {
         return dataStore.getGenres()
     }
 
-    suspend fun getGenre(id: Int): Genre {
+    override suspend fun getGenre(id: Int): Genre {
         return dataStore.getGenre(id)
     }
 

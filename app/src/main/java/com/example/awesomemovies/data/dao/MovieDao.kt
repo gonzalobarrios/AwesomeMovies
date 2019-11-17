@@ -11,12 +11,14 @@ interface MovieDao {
     @Query("SELECT * FROM movie WHERE title LIKE :query")
     suspend fun getMoviesByQuery(query: String): List<Movie>
 
+    @Query("SELECT * FROM movie WHERE id IS :id")
+    suspend fun getMovie(id: Int): Movie
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(vararg movies: Movie)
 
     @Delete
     suspend fun delete(movie: Movie)
-
 
     @Query("DELETE FROM movie where id NOT IN (SELECT id from movie ORDER BY id DESC LIMIT :max)")
     suspend fun deleteWhenMax(max: Int)

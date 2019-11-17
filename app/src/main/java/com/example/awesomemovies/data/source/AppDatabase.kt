@@ -13,7 +13,7 @@ import com.example.awesomemovies.data.model.Genre
 import com.example.awesomemovies.data.model.Movie
 import com.example.awesomemovies.data.model.MovieGenreJoin
 
-@Database(entities = [Movie::class, Genre::class, MovieGenreJoin::class], version = 1, exportSchema = false)
+@Database(entities = [Movie::class, Genre::class, MovieGenreJoin::class], version = 2, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract  fun movieDao(): MovieDao
