@@ -10,7 +10,7 @@ class DatabaseMovieDataStore (private val movieDao: MovieDao, private val movieG
         return movieDao.getAll()
     }
 
-    override suspend fun searchMovies(query: String, voteAverage: Int?): List<Movie> {
+    override suspend fun searchMovies(query: String): List<Movie> {
         return listOf<Movie>()
     }
 

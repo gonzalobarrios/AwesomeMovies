@@ -19,7 +19,8 @@ class MoviesFragment : Fragment() {
     private lateinit var adapter: MoviesAdapter
     private val moviesViewModel: MoviesViewModel by viewModel()
     private lateinit var starButtons: Array<ImageButton>
-
+    private var searchTriggerEnable = true
+    private var filterTriggerEnable = true
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,14 +59,32 @@ class MoviesFragment : Fragment() {
         search_bar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextChange(newText: String): Boolean {
-                moviesViewModel.searchMovies(newText, 0)
-                return false
+                if(newText.isNullOrBlank()){
+                    if(searchTriggerEnable){
+                        moviesViewModel.loadMovies()
+                    }
+                    return false
+                }
+                else{
+                    filterTriggerEnable = false
+                    starAction(-1)
+                    filterTriggerEnable = true
+                    moviesViewModel.searchMovies(newText)
+                    return false
+
+                }
             }
 
             override fun onQueryTextSubmit(query: String): Boolean {
-                moviesViewModel.searchMovies(query, 0)
-                search_bar.clearFocus();
-                return false
+                if(query.isNullOrBlank()){
+                    moviesViewModel.loadMovies()
+                    return false
+                }
+                else{
+                    moviesViewModel.searchMovies(query)
+                    return false
+
+                }
             }
         })
     }
@@ -91,22 +110,24 @@ class MoviesFragment : Fragment() {
     }
 
     private  fun starAction(tag: Int) {
+        searchTriggerEnable = false
+        if(filterTriggerEnable) search_bar.setQuery(null, false)
+        searchTriggerEnable = true
+
         if (tag == -1) {
             val untilValue = starButtons.size - 1
             for (i in 0..untilValue ) {
                 starButtons[i].tag = "" + i
                 starButtons[i].setColorFilter(Color.GRAY)
             }
-            moviesViewModel.loadMovies()
+            if(filterTriggerEnable) moviesViewModel.loadMovies()
         } else {
             for (i in 0..tag) {
                 starButtons[i].setColorFilter(Color.YELLOW)
                 starButtons[i].tag = "-1"
             }
-
-            moviesViewModel.searchMovies("Alice", tag + 1)
+            val star = (tag+1)*2
+            moviesViewModel.filterMovies(star-2, star)
         }
-
-
     }
 }

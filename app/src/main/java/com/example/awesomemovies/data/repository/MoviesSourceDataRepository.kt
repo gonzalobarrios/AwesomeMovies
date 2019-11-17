@@ -11,7 +11,7 @@ class MoviesSourceDataRepository (var factory: MoviesDataStoreFactory) : MoviesS
     }
 
     override suspend fun searchMovies(query: String, voteAverage: Int?): List<Movie> {
-        return factory.moviesDataStoreFactory.searchMovies(query, voteAverage)
+        return factory.moviesDataStoreFactory.searchMovies(query)
     }
 
 }

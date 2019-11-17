@@ -6,19 +6,27 @@ import com.example.awesomemovies.data.service.MovieService
 
 class CloudMoviesDataStore (private val movieService: MovieService, private val movieDao: MovieDao) : MovieDataStore {
 
-    override suspend fun getMovies(): List<Movie> {
-        val movies = movieService.discoverMovies().results
-        if(movies.isNotEmpty()){
+    suspend fun discoverMovies(voteAvarageMin: Int? = null, voteAvarageMax: Int? = null): List<Movie> {
+        val movies = movieService.discoverMovies(voteAvarageMin, voteAvarageMax).results
+        /*if(movies.isNotEmpty()){
             saveMovies(movies)
-        }
+        }*/
         return movies
     }
 
-    override suspend fun searchMovies(query: String, voteAverage: Int?): List<Movie> {
-        val movies = movieService.searchMovies(query, voteAverage).results
-        if(movies.isNotEmpty()){
+    override suspend fun getMovies(): List<Movie> {
+        val movies = movieService.discoverMovies(vote_average_min = null, vote_average_max = null).results
+        /*if(movies.isNotEmpty()){
             saveMovies(movies)
-        }
+        }*/
+        return movies
+    }
+
+    override suspend fun searchMovies(query: String): List<Movie> {
+        val movies = movieService.searchMovies(query).results
+//        if(movies.isNotEmpty()){
+//            saveMovies(movies)
+//        }
         return movies
     }
 

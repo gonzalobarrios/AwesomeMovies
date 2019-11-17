@@ -5,12 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.awesomemovies.data.model.Movie
 import com.example.awesomemovies.data.repository.MoviesSourceRepository
+import com.example.awesomemovies.data.repository.movies.CloudMoviesDataStore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-class MoviesViewModel(private val repository: MoviesSourceRepository) : ViewModel(), CoroutineScope {
+class MoviesViewModel(private val repository: CloudMoviesDataStore) : ViewModel(), CoroutineScope {
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main
 
@@ -29,23 +30,36 @@ class MoviesViewModel(private val repository: MoviesSourceRepository) : ViewMode
                 val movies = repository.getMovies()
                 localMovies.postValue(movies)
             } catch (error: Exception) {
-                val a = error
             } finally {
                 localIsLoading.postValue(false)
             }
         }
     }
 
-    fun searchMovies(text: String, average: Int) {
+    fun searchMovies(text: String) {
         launch(Dispatchers.IO) {
             try {
-                val movies = repository.searchMovies(text, 0)
+                val movies = repository.searchMovies(text)
                 if (!movies.isEmpty()) {
                     localMovies.postValue(movies)
                 }
 
             } catch (error: Exception) {
-                val a = error
+            } finally {
+                localIsLoading.postValue(false)
+            }
+        }
+    }
+
+    fun filterMovies(voteAverageMin: Int, voteAverageMax: Int) {
+        launch(Dispatchers.IO) {
+            try {
+                val movies = repository.discoverMovies(voteAverageMin, voteAverageMax)
+                if (!movies.isEmpty()) {
+                    localMovies.postValue(movies)
+                }
+
+            } catch (error: Exception) {
             } finally {
                 localIsLoading.postValue(false)
             }
