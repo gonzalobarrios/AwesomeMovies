@@ -3,15 +3,16 @@ package com.example.awesomemovies.data.repository.movies
 import com.example.awesomemovies.data.dao.MovieDao
 import com.example.awesomemovies.data.model.Movie
 import com.example.awesomemovies.data.model.MovieGenreJoin
+import com.example.awesomemovies.data.repository.moviegenrejoin.DatabaseMovieGenreDataStore
 
 class DatabaseMovieDataStore (private val movieDao: MovieDao, private val movieGenreDataStore: DatabaseMovieGenreDataStore) : MovieDataStore {
 
-    override suspend fun getMovies(): List<Movie> {
+    suspend fun getFavoritesMovies(): List<Movie> {
         return movieDao.getAll()
     }
 
-    override suspend fun searchMovies(query: String): List<Movie> {
-        return listOf<Movie>()
+    override suspend fun getMovie(id: Int): Movie{
+        return movieDao.getMovie(id)
     }
 
     suspend fun saveMovie(movie: Movie){

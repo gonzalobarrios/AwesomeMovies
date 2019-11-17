@@ -11,7 +11,7 @@ import androidx.room.PrimaryKey
 ))
 data class Genre(
     @PrimaryKey val id: Int,
-    @ColumnInfo(name = "name") val title: String
+    @ColumnInfo(name = "name") val name: String
 ) {
 
 }

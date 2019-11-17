@@ -5,24 +5,20 @@ import com.barriosartola.awesomeapp.data.controller.AuthController
 import com.barriosartola.awesomeapp.data.controller.RetrofitController
 import com.barriosartola.awesomeapp.data.helper.adapter.ZonedDateTimeAdapter
 import com.barriosartola.awesomeapp.data.helper.networking.NetworkingManager
-import com.barriosartola.awesomeapp.data.repository.NotesSourceDataRepository
-import com.barriosartola.awesomeapp.data.repository.NotesSourceRepository
-import com.barriosartola.awesomeapp.data.repository.notes.NotesDataStoreFactory
 import com.barriosartola.awesomeapp.data.service.AuthService
-import com.barriosartola.awesomeapp.data.service.NoteService
 import com.barriosartola.awesomeapp.data.source.AppDatabase
 import com.barriosartola.awesomeapp.presentation.view.auth.LoginViewModel
 
 import com.barriosartola.awesomeapp.presentation.view.home.movies.MoviesViewModel
 
-import com.barriosartola.awesomeapp.presentation.view.home.notes.NotesViewModel
 import com.example.awesomemovies.data.repository.GenreSourceDataRepository
 import com.example.awesomemovies.data.repository.MoviesSourceDataRepository
 import com.example.awesomemovies.data.repository.MoviesSourceRepository
 import com.example.awesomemovies.data.repository.genres.CloudGenreDataStore
 import com.example.awesomemovies.data.repository.genres.DatabaseGenreDataStore
+import com.example.awesomemovies.data.repository.genres.GenreDataStoreFactory
 import com.example.awesomemovies.data.repository.movies.CloudMoviesDataStore
-import com.example.awesomemovies.data.repository.movies.DatabaseMovieGenreDataStore
+import com.example.awesomemovies.data.repository.moviegenrejoin.DatabaseMovieGenreDataStore
 import com.example.awesomemovies.data.repository.movies.MoviesDataStoreFactory
 import com.example.awesomemovies.data.service.GenreService
 import com.example.awesomemovies.data.service.MovieService
@@ -68,12 +64,17 @@ var moviesModule = module {
 }
 
 var movieGenreModule = module {
-    single { DatabaseMovieGenreDataStore(get()) }
+    single {
+        DatabaseMovieGenreDataStore(
+            get()
+        )
+    }
 }
 
 var genreModule = module {
     single { DatabaseGenreDataStore(get()) }
-    single {GenreSourceDataRepository(get())}
+    single { GenreSourceDataRepository(get())}
+    single { GenreDataStoreFactory(get(),get(),get())}
     single { CloudGenreDataStore(get(), get())}
 }
 

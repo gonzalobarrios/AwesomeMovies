@@ -10,7 +10,7 @@ import com.example.awesomemovies.data.model.MovieGenreJoin
 @Dao
 interface MovieGenreJoinDao {
     @Insert
-    fun insert(vararg moviesGenreJoin: MovieGenreJoin)
+    suspend fun insert(vararg moviesGenreJoin: MovieGenreJoin)
 
     @Query("""
            SELECT * FROM movie
@@ -18,7 +18,7 @@ interface MovieGenreJoinDao {
            ON movie.id=movie_genre_join.movie_id
            WHERE movie_genre_join.genre_id=:genre
            """)
-    fun getMoviesForGenre(genre: Int): Array<Movie>
+    suspend fun getMoviesForGenre(genre: Int): Array<Movie>
 
     @Query("""
            SELECT * FROM genre
@@ -26,5 +26,5 @@ interface MovieGenreJoinDao {
            ON genre.id=movie_genre_join.genre_id
            WHERE movie_genre_join.movie_id=:movieId
            """)
-    fun getGenresForMovie(movieId: Int): Array<Genre>
+    suspend fun getGenresForMovie(movieId: Int): Array<Genre>
 }
