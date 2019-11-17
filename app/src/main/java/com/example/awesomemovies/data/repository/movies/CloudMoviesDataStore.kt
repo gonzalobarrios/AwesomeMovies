@@ -4,7 +4,7 @@ import com.example.awesomemovies.data.dao.MovieDao
 import com.example.awesomemovies.data.model.Movie
 import com.example.awesomemovies.data.service.MovieService
 
-class CloudMoviesDataStore (private val movieService: MovieService, private val movieDao: MovieDao) : MovieDataStore {
+class CloudMoviesDataStore (private val movieService: MovieService) : MovieDataStore {
 
     suspend fun discoverMovies(voteAverageMin: Int? = null, voteAverageMax: Int? = null): List<Movie> {
         return movieService.discoverMovies(voteAverageMin, voteAverageMax).results
