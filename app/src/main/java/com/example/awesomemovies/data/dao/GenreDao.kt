@@ -12,6 +12,9 @@ interface GenreDao {
     @Query("SELECT * FROM genre")
     suspend fun getAll(): List<Genre>
 
+    @Query("SELECT * FROM genre where id IN (:ids)")
+    suspend fun getAllGenresById(ids: List<Int>): List<Genre>
+
     @Query("SELECT * FROM genre WHERE id IS :id")
     suspend fun get(id: Int): Genre
 

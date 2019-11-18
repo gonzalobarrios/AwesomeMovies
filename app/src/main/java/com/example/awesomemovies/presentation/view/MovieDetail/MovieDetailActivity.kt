@@ -30,9 +30,8 @@ class MovieDetailActivity : AppCompatActivity() {
                 bundle.putInt(MovieDetailFragment.ARG_MOVIE_ID, movieId)
                 frag.arguments = bundle
             }
-
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, frag)
+                .add(R.id.container, frag)
                 .commitNow()
         }
 

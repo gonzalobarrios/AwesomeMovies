@@ -7,7 +7,6 @@ import com.barriosartola.awesomeapp.data.helper.adapter.ZonedDateTimeAdapter
 import com.barriosartola.awesomeapp.data.helper.networking.NetworkingManager
 import com.barriosartola.awesomeapp.data.service.AuthService
 import com.barriosartola.awesomeapp.data.source.AppDatabase
-import com.barriosartola.awesomeapp.presentation.view.auth.LoginViewModel
 
 import com.barriosartola.awesomeapp.presentation.view.home.movies.MoviesViewModel
 
@@ -95,5 +94,4 @@ var genreModule = module {
 var loginModule = module {
     single { AuthController(get(), get(), get()) }
     single { PreferenceManager.getDefaultSharedPreferences(get()) }
-    viewModel { LoginViewModel(get()) }
 }
