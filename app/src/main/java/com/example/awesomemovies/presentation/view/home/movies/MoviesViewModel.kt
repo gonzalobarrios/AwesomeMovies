@@ -19,9 +19,15 @@ class MoviesViewModel(private val repository: CloudMoviesDataStore) : ViewModel(
         get() = localMovies
     val isLoading: LiveData<Boolean>
         get() = localIsLoading
+    val moviesLoaded: LiveData<Boolean>
+        get() = localMoviesLoaded
+
+
 
     private val localMovies = MutableLiveData<List<Movie>>()
     private val localIsLoading = MutableLiveData<Boolean>()
+    private val localMoviesLoaded = MutableLiveData<Boolean>()
+
 
     fun loadMovies() {
         localIsLoading.postValue(true)
@@ -29,7 +35,9 @@ class MoviesViewModel(private val repository: CloudMoviesDataStore) : ViewModel(
             try {
                 val movies = repository.getMovies()
                 localMovies.postValue(movies)
+                localMoviesLoaded.postValue(true)
             } catch (error: Exception) {
+                localMoviesLoaded.postValue(false)
             } finally {
                 localIsLoading.postValue(false)
             }
@@ -42,9 +50,12 @@ class MoviesViewModel(private val repository: CloudMoviesDataStore) : ViewModel(
                 val movies = repository.searchMovies(text)
                 if (!movies.isEmpty()) {
                     localMovies.postValue(movies)
+                    localMoviesLoaded.postValue(true)
                 }
 
             } catch (error: Exception) {
+                localMoviesLoaded.postValue(false)
+
             } finally {
                 localIsLoading.postValue(false)
             }
@@ -57,9 +68,13 @@ class MoviesViewModel(private val repository: CloudMoviesDataStore) : ViewModel(
                 val movies = repository.discoverMovies(voteAverageMin, voteAverageMax)
                 if (!movies.isEmpty()) {
                     localMovies.postValue(movies)
+                    localMoviesLoaded.postValue(true)
+
                 }
 
             } catch (error: Exception) {
+                localMoviesLoaded.postValue(false)
+
             } finally {
                 localIsLoading.postValue(false)
             }
