@@ -49,9 +49,12 @@ class MovieDetailFragment : Fragment() {
 
         fav_image.setOnClickListener {
             if (fav_image.tag == "0") {
+                // Add to favs
                 fav_image.setColorFilter(Color.RED)
                 fav_image.setTag("1")
             } else {
+
+                //Remove from favs
                 fav_image.setColorFilter(Color.GRAY)
                 fav_image.setTag("0")
             }

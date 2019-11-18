@@ -8,7 +8,6 @@ import android.os.Bundle
 import com.barriosartola.awesomeapp.data.controller.RetrofitController
 import com.barriosartola.awesomeapp.inject.*
 import com.barriosartola.awesomeapp.presentation.view.accessTokenKey
-import com.barriosartola.awesomeapp.presentation.view.auth.AuthActivity
 import com.jakewharton.threetenabp.AndroidThreeTen
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
@@ -75,12 +74,5 @@ class App : Application() {
     companion object {
         var currentActivity = WeakReference<Activity>(null)
 
-        fun goToLoginScreen() {
-            currentActivity.get()?.let {
-                val intent = Intent(it, AuthActivity::class.java)
-                it.startActivity(intent)
-                it.finish()
-            }
-        }
     }
 }

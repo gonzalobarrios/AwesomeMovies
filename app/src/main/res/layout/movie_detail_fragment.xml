@@ -11,10 +11,11 @@
         android:id="@+id/movie_poster"
         android:layout_width="200dp"
         android:layout_height="300dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintBottom_toTopOf="@id/movie_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@+id/container">
 
     </ImageView>
 
