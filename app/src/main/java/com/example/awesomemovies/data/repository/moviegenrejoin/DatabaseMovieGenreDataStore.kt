@@ -11,4 +11,12 @@ class DatabaseMovieGenreDataStore(private val movieGenreDao: MovieGenreJoinDao) 
     suspend fun getGenresForMovie(movieId: Int): List<Genre>{
         return movieGenreDao.getGenresForMovie(movieId).toList()
     }
+
+    suspend fun deleteGenreRelationForMovie(movieId: Int){
+        return movieGenreDao.deleteRelationForMovie(movieId)
+    }
+
+    suspend fun getAllGenreJoin(): List<MovieGenreJoin>{
+        return movieGenreDao.getGenreJoin()
+    }
 }

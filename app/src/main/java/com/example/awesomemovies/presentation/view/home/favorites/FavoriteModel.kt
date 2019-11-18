@@ -1,4 +1,4 @@
-package com.example.awesomemovies.presentation.view.home.profile
+package com.example.awesomemovies.presentation.view.home.favorites
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
