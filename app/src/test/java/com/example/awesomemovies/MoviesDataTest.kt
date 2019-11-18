@@ -1,17 +1,12 @@
 package com.example.awesomemovies
 
 import android.content.Context
-import com.barriosartola.awesomeapp.data.repository.notes.CloudNotesDataStore
-import com.barriosartola.awesomeapp.data.repository.notes.DatabaseNotesDataStore
-import com.barriosartola.awesomeapp.inject.movieGenreModule
 import com.barriosartola.awesomeapp.mocks.NetworkingManagerMock
-import com.barriosartola.awesomeapp.mocks.NotesDataStoreFactoryMock
 import com.example.awesomemovies.data.dao.GenreDao
 import com.example.awesomemovies.data.dao.MovieDao
 import com.example.awesomemovies.data.dao.MovieGenreJoinDao
 import com.example.awesomemovies.data.repository.GenreSourceDataRepository
 import com.example.awesomemovies.data.repository.genres.DatabaseGenreDataStore
-import com.example.awesomemovies.data.repository.genres.GenreDataStore
 import com.example.awesomemovies.data.repository.moviegenrejoin.DatabaseMovieGenreDataStore
 import com.example.awesomemovies.data.repository.movies.CloudMoviesDataStore
 import com.example.awesomemovies.data.repository.movies.DatabaseMovieDataStore
