@@ -52,7 +52,7 @@ class MoviesAdapter : BaseAdapter {
             .into(imageView)
 
         gridItemView.vote_average.text = "★" + item.voteAverage.toString()
-        gridItemView.movie_year.text = item.releaseDate.toString().take(4)
+        gridItemView.movie_year.text = item.releaseDate.take(4)
 
         gridItemView.setOnClickListener {
             onCategoryClicked(item.id)

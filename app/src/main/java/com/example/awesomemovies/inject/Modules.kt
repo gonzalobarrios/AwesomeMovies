@@ -69,7 +69,7 @@ var moviesModule = module {
     single { DatabaseMovieDataStore(get (), get ())}
     viewModel { MoviesViewModel(get()) }
     viewModel { FavoriteModel(get()) }
-    viewModel { MovieDetailViewModel(get())}
+    viewModel { MovieDetailViewModel(get(), get())}
 }
 
 var reviewsModule = module {
