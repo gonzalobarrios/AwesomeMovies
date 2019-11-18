@@ -25,7 +25,7 @@ import com.example.awesomemovies.data.service.GenreService
 import com.example.awesomemovies.data.service.MovieService
 import com.example.awesomemovies.presentation.view.MovieDetail.MovieDetailViewModel
 import com.example.awesomemovies.data.service.ReviewService
-import com.example.awesomemovies.presentation.view.home.profile.FavoriteModel
+import com.example.awesomemovies.presentation.view.home.favorites.FavoriteModel
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import org.koin.androidx.viewmodel.dsl.viewModel

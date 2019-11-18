@@ -2,6 +2,7 @@ package com.example.awesomemovies.data.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.awesomemovies.data.model.Genre
 import com.example.awesomemovies.data.model.Movie
@@ -9,8 +10,13 @@ import com.example.awesomemovies.data.model.MovieGenreJoin
 
 @Dao
 interface MovieGenreJoinDao {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(vararg moviesGenreJoin: MovieGenreJoin)
+
+    @Query("""
+           SELECT * FROM movie_genre_join
+           """)
+    suspend fun getGenreJoin(): List<MovieGenreJoin>
 
     @Query("""
            SELECT * FROM movie
@@ -27,4 +33,10 @@ interface MovieGenreJoinDao {
            WHERE movie_genre_join.movie_id=:movieId
            """)
     suspend fun getGenresForMovie(movieId: Int): Array<Genre>
+
+    @Query("""
+           DELETE FROM movie_genre_join
+           WHERE movie_genre_join.movie_id=:movieId
+           """)
+    suspend fun deleteRelationForMovie(movieId: Int)
 }

@@ -1,5 +1,6 @@
 package com.example.awesomemovies.presentation.view.MovieDetail
 
+import android.content.Context
 import android.graphics.Color
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -13,8 +14,7 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.awesomemovies.data.model.Movie
 import kotlinx.android.synthetic.main.movie_detail_fragment.*
-import kotlinx.android.synthetic.main.movies_fragment.*
-import kotlinx.android.synthetic.main.movies_grid_item.view.*
+
 
 
 class MovieDetailFragment : Fragment() {
@@ -34,7 +34,6 @@ class MovieDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        // Get the movieId
         if (arguments != null && arguments!!.getInt(ARG_MOVIE_ID, -1) != -1) {
             movieId = arguments!!.getInt(ARG_MOVIE_ID, -1)
         }
@@ -43,6 +42,7 @@ class MovieDetailFragment : Fragment() {
 
         movieDetailViewModel.loadMovie(movieId)
         movieDetailViewModel.movie.observe(viewLifecycleOwner, Observer(this::movieLoaded))
+        movieDetailViewModel.savedFavorite.observe(viewLifecycleOwner, Observer(this::isFavorite))
     }
 
     private fun setupFavoriteFunctionality() {
@@ -50,19 +50,30 @@ class MovieDetailFragment : Fragment() {
         fav_image.setOnClickListener {
             if (fav_image.tag == "0") {
                 // Add to favs
-                fav_image.setColorFilter(Color.RED)
-                fav_image.setTag("1")
+                movieDetailViewModel.saveFavorite()
             } else {
-
                 //Remove from favs
-                fav_image.setColorFilter(Color.GRAY)
-                fav_image.setTag("0")
+                movieDetailViewModel.removeFavorite()
             }
 
         }
     }
 
-    private fun movieLoaded(movie: Movie) {
+    private fun isFavorite(favorite: Boolean){
+        if(favorite){
+            fav_image.setColorFilter(Color.RED)
+            fav_image.setTag("1")
+        }
+        else{
+            fav_image.setColorFilter(Color.GRAY)
+            fav_image.setTag("0")
+        }
+    }
+
+    private fun movieLoaded(movie: Movie?) {
+        if (movie== null){
+            return
+        }
 
         // Set movie image
         var imageView = movie_poster

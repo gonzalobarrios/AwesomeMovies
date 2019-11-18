@@ -1,6 +1,7 @@
 package com.example.awesomemovies.data.repository.movies
 
 import com.example.awesomemovies.data.dao.MovieDao
+import com.example.awesomemovies.data.model.Genre
 import com.example.awesomemovies.data.model.Movie
 import com.example.awesomemovies.data.model.MovieGenreJoin
 import com.example.awesomemovies.data.repository.moviegenrejoin.DatabaseMovieGenreDataStore
@@ -12,7 +13,17 @@ class DatabaseMovieDataStore (private val movieDao: MovieDao, private val movieG
     }
 
     override suspend fun getMovie(id: Int): Movie{
-        return movieDao.getMovie(id)
+        var movie = movieDao.getMovie(id)
+        var genres = listOf<Genre>()
+        if(movie != null){
+            genres = movieGenreDataStore.getGenresForMovie(movie.id)
+        }
+        return movie.copy(genres = genres)
+    }
+
+    suspend fun deleteMovie(movie: Movie){
+        movieGenreDataStore.deleteGenreRelationForMovie(movie.id)
+        movieDao.delete(movie)
     }
 
     suspend fun saveMovie(movie: Movie){
