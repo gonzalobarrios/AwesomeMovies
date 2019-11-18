@@ -26,6 +26,7 @@ import com.example.awesomemovies.data.service.MovieService
 import com.example.awesomemovies.presentation.view.MovieDetail.MovieDetailViewModel
 import com.example.awesomemovies.data.service.ReviewService
 import com.example.awesomemovies.presentation.view.home.favorites.FavoriteModel
+import com.example.awesomemovies.presentation.view.reviews.ReviewListViewModel
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -73,7 +74,8 @@ var moviesModule = module {
 }
 
 var reviewsModule = module {
-    single {CloudReviewDataStore(get())}
+    single { CloudReviewDataStore(get()) }
+    viewModel { ReviewListViewModel(get())}
 }
 
 var movieGenreModule = module {
