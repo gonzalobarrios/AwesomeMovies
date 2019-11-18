@@ -14,9 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name="com.example.awesomemovies.presentation.view.reviews.ReviewListActivity"
+            android:label="@string/title_activity_review"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name="com.example.awesomemovies.presentation.view.MovieDetail.MovieDetailActivity"
             android:label="@string/title_activity_movie_detail"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.example.awesomemovies.presentation.view.MovieDetail.MovieActivity"
             android:label="@string/title_activity_movie"

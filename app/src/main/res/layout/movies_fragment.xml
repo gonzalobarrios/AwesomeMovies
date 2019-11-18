@@ -16,8 +16,9 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="20dp"
-        android:background="@color/colorPrimary"
+        android:background="@android:color/white"
         android:gravity="center"
+        android:src="@drawable/cinema_glasses_flat_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
