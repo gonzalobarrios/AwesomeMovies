@@ -15,4 +15,8 @@ class CloudGenreDataStore (private val genreService: GenreService, private val g
     override suspend fun getGenre(id: Int): Genre {
         return genreDao.get(id)
     }
+
+    override suspend fun getAllGenresById(genresIds: List<Int>): List<Genre> {
+        return genreDao.getAllGenresById(genresIds)
+    }
 }

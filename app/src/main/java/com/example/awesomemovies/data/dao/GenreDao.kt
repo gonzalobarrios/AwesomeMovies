@@ -20,4 +20,7 @@ interface GenreDao {
 
     @Delete
     suspend fun delete(genre: Genre)
+
+    @Query("SELECT * FROM genre where id IN (:ids)")
+    suspend fun getAllGenresById(ids: List<Int>): List<Genre>
 }

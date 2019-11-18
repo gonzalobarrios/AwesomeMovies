@@ -1,5 +1,6 @@
 package com.example.awesomemovies.presentation.view.MovieDetail
 
+import android.graphics.Color
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.awesomemovies.data.model.Movie
 import kotlinx.android.synthetic.main.movie_detail_fragment.*
+import kotlinx.android.synthetic.main.movies_fragment.*
 import kotlinx.android.synthetic.main.movies_grid_item.view.*
 
 
@@ -37,8 +39,24 @@ class MovieDetailFragment : Fragment() {
             movieId = arguments!!.getInt(ARG_MOVIE_ID, -1)
         }
 
+        setupFavoriteFunctionality()
+
         movieDetailViewModel.loadMovie(movieId)
         movieDetailViewModel.movie.observe(viewLifecycleOwner, Observer(this::movieLoaded))
+    }
+
+    private fun setupFavoriteFunctionality() {
+
+        fav_image.setOnClickListener {
+            if (fav_image.tag == "0") {
+                fav_image.setColorFilter(Color.RED)
+                fav_image.setTag("1")
+            } else {
+                fav_image.setColorFilter(Color.GRAY)
+                fav_image.setTag("0")
+            }
+
+        }
     }
 
     private fun movieLoaded(movie: Movie) {
@@ -51,6 +69,20 @@ class MovieDetailFragment : Fragment() {
             .load("https://image.tmdb.org/t/p/w185/" + movie.posterPath)
             .error(R.drawable.movie_image_place_holder)
             .into(imageView)
+
+        movie_name.text = movie.title
+        movie_year.text = movie.releaseDate.take(4)
+        movie_rating.text = movie.voteAverage.toString()
+        movie_resume.text = movie.overview
+
+        // Get genres
+        var genres = ""
+        movie.genres.forEach{
+            genres = genres + it.name + ", "
+        }
+
+        genres = genres.dropLast(2)
+        genres_names.text = genres
     }
 
 }

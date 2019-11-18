@@ -13,4 +13,8 @@ class DatabaseGenreDataStore(private val genreDao: GenreDao): GenreDataStore {
         return genreDao.getAll()
     }
 
+    override suspend fun getAllGenresById(genresIds: List<Int>): List<Genre> {
+        return genreDao.getAllGenresById(genresIds)
+    }
+
 }
