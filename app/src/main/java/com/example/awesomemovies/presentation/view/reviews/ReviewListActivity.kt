@@ -12,8 +12,6 @@ class ReviewListActivity : AppCompatActivity() {
 
     private var movieId = -1
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_review)
@@ -28,7 +26,7 @@ class ReviewListActivity : AppCompatActivity() {
 
             if (movieId != -1) {
                 var bundle = Bundle()
-                bundle.putInt(ReviewListFragment.ARG_CATEGORY_ID, movieId)
+                bundle.putInt(ReviewListFragment.ARG_MOVIE_ID, movieId)
                 frag.arguments = bundle
             }
 
