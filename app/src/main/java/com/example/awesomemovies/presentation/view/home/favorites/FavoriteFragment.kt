@@ -48,6 +48,7 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun loadingStateChanged(isLoading: Boolean) {
+
     }
 
     private fun onMovieClicked(id: Int) {

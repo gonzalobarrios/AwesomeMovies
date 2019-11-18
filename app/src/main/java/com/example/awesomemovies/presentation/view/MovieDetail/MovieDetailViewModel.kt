@@ -33,6 +33,10 @@ class MovieDetailViewModel(private val repository: MoviesSourceRepository, priva
     val isLoading: LiveData<Boolean>
         get() = localIsLoading
 
+    val isUpdating: LiveData<Boolean>
+        get() = localIsUpdating
+
+    private val localIsUpdating = MutableLiveData<Boolean>()
     private val localMovie = MutableLiveData<Movie>()
     private val localSavedFavorite = MutableLiveData<Boolean>()
     private val localGenres = MutableLiveData<List<Genre>>()
@@ -46,6 +50,8 @@ class MovieDetailViewModel(private val repository: MoviesSourceRepository, priva
                 localMovie.postValue(movie)
                 isFavorite()
             } catch (error: Exception) {
+                localMovie.postValue(null)
+
             } finally {
                 localIsLoading.postValue(false)
             }
@@ -53,6 +59,8 @@ class MovieDetailViewModel(private val repository: MoviesSourceRepository, priva
     }
 
     fun saveFavorite(){
+        localIsUpdating.postValue(true)
+
         launch(Dispatchers.IO) {
             try {
                 if(movie.value != null) {
@@ -62,11 +70,15 @@ class MovieDetailViewModel(private val repository: MoviesSourceRepository, priva
             } catch (error: Exception){
                 val a = error
                 localSavedFavorite.postValue(false)
+            }finally {
+                localIsUpdating.postValue(false)
             }
         }
     }
 
     fun removeFavorite(){
+        localIsUpdating.postValue(true)
+
         launch(Dispatchers.IO) {
             try {
                 if(movie.value != null) {
@@ -75,6 +87,9 @@ class MovieDetailViewModel(private val repository: MoviesSourceRepository, priva
                 }
             } catch (error: Exception){
                 val a = error
+            }
+            finally {
+                localIsUpdating.postValue(false)
             }
         }
     }

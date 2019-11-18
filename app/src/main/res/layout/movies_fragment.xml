@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -100,8 +103,18 @@
             android:tag="4"
             android:tint="@android:color/darker_gray" />
     </LinearLayout>
-
     <include
         layout="@layout/movies_grid" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/no_movie"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="We could not access movies.\n Please check your internet connection and try again."
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:visibility="gone"></TextView>
+</RelativeLayout>

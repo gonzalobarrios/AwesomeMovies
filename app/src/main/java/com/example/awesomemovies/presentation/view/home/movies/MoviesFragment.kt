@@ -11,6 +11,7 @@ import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.barriosartola.awesomeapp.R
+import com.barriosartola.awesomeapp.presentation.helper.visibleIf
 import com.barriosartola.awesomeapp.presentation.view.home.HomeActivity
 import com.example.awesomemovies.data.model.Movie
 import com.example.awesomemovies.presentation.view.MovieDetail.MovieDetailActivity
@@ -48,12 +49,18 @@ class MoviesFragment : Fragment() {
         setupSearchBar()
         setStarActions()
         moviesViewModel.loadMovies()
+        moviesViewModel.moviesLoaded.observe(viewLifecycleOwner, Observer (this::moviesFetched))
         moviesViewModel.movies.observe(viewLifecycleOwner, Observer(this::moviesLoaded))
         moviesViewModel.isLoading.observe(viewLifecycleOwner, Observer(this::loadingStateChanged))
     }
 
     private fun moviesLoaded(movies: List<Movie>) {
         adapter.movies = movies
+    }
+
+    private fun moviesFetched(fetched: Boolean){
+        //movies_grid.visibleIf(fetched)
+        no_movie.visibleIf(!fetched)
     }
 
     private fun loadingStateChanged(isLoading: Boolean) {
