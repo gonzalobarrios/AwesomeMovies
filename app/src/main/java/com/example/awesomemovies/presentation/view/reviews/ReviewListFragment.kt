@@ -48,6 +48,7 @@ class ReviewListFragment : Fragment() {
         }
 
         reviewListViewModel.loadReviews(movieId)
+        reviewListViewModel.reviewsLoaded.observe(viewLifecycleOwner, Observer(this::reviewsFetched))
         reviewListViewModel.isLoading.observe(viewLifecycleOwner, Observer(this::loadingStateChanged))
         reviewListViewModel.reviews.observe(viewLifecycleOwner, Observer(this::reviewsLoaded))
         reviewListViewModel.reviewsCount.observe(viewLifecycleOwner, Observer(this::reviewsCountLoaded))
@@ -58,19 +59,18 @@ class ReviewListFragment : Fragment() {
     }
 
     private fun reviewsCountLoaded(count: Int) {
-        if (count > 0) {
-            no_reviews_tv.isVisible = false
-            reviews_count.text = "Reviews: " + count
-        } else {
-            no_reviews_tv.isVisible = true
-            reviews_count.isVisible = false
-        }
-
+        no_reviews_tv.visibleIf(count==0)
+        recyclerView.visibleIf(count!=0)
+        reviews_count.text = "Reviews: " + count
     }
 
     fun loadingStateChanged(isLoading: Boolean){
         recyclerView.visibleIf(!isLoading)
         progressBar.visibleIf(isLoading)
+    }
+    fun reviewsFetched(fetched: Boolean){
+        fail_fetch_tv.visibleIf(!fetched)
+        recyclerView.visibleIf(fetched)
     }
 
 }
