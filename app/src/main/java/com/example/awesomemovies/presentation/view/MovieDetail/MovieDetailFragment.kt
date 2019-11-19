@@ -1,5 +1,6 @@
 package com.example.awesomemovies.presentation.view.MovieDetail
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ import com.barriosartola.awesomeapp.presentation.helper.visible
 import com.barriosartola.awesomeapp.presentation.helper.visibleIf
 import com.bumptech.glide.Glide
 import com.example.awesomemovies.data.model.Movie
+import com.example.awesomemovies.presentation.view.reviews.ReviewListActivity
 import kotlinx.android.synthetic.main.movie_detail_fragment.*
 
 
@@ -21,6 +23,7 @@ import kotlinx.android.synthetic.main.movie_detail_fragment.*
 class MovieDetailFragment : Fragment() {
     private val movieDetailViewModel: MovieDetailViewModel by viewModel()
     private var movieId = -1
+    private val GotoReviewsRequestCode = 1002
 
     companion object {
         const val ARG_MOVIE_ID = "ARG_MOVIE_ID"
@@ -40,12 +43,19 @@ class MovieDetailFragment : Fragment() {
         }
 
         setupFavoriteFunctionality()
+        setupReviewsButtonFunctionality()
 
         movieDetailViewModel.loadMovie(movieId)
         movieDetailViewModel.isUpdating.observe(viewLifecycleOwner, Observer(this::updateStateChanged))
         movieDetailViewModel.isLoading.observe(viewLifecycleOwner, Observer(this::loadingStateChanged))
         movieDetailViewModel.movie.observe(viewLifecycleOwner, Observer(this::movieLoaded))
         movieDetailViewModel.savedFavorite.observe(viewLifecycleOwner, Observer(this::isFavorite))
+    }
+
+    private fun setupReviewsButtonFunctionality() {
+        show_reviews_button.setOnClickListener {
+            this.showReviews(movieId)
+        }
     }
 
     private fun setupFavoriteFunctionality() {
@@ -108,6 +118,20 @@ class MovieDetailFragment : Fragment() {
 
         genres = genres.dropLast(2)
         genres_names.text = genres
+    }
+
+    private fun showReviews(id: Int) {
+        activity?.let {
+
+            var intent = Intent(it, ReviewListActivity::class.java)
+
+            if (id != -1) {
+                intent.putExtra(ReviewListActivity.ARG_MOVIE_ID, id)
+            }
+
+            startActivityForResult(intent, GotoReviewsRequestCode)
+        }
+
     }
 
     fun loadingStateChanged(isLoading: Boolean){

@@ -48,7 +48,7 @@ class MovieDetailViewModel(private val repository: MoviesSourceRepository, priva
             try {
                 val movie = repository.getMovie(id)
                 localMovie.postValue(movie)
-                isFavorite()
+                isFavorite(movie.id)
             } catch (error: Exception) {
                 localMovie.postValue(null)
 
@@ -95,16 +95,14 @@ class MovieDetailViewModel(private val repository: MoviesSourceRepository, priva
     }
 
 
-    private fun isFavorite(){
+    private fun isFavorite(movieId: Int){
         launch(Dispatchers.IO) {
             try {
-                if(movie.value != null) {
-                    if(movieDataStore.getMovie(movie.value!!.id) != null){
-                        localSavedFavorite.postValue(true)
-                    }
-                    else {
-                        localSavedFavorite.postValue(false)
-                    }
+                if(movieDataStore.getMovie(movieId) != null){
+                    localSavedFavorite.postValue(true)
+                }
+                else {
+                    localSavedFavorite.postValue(false)
                 }
             } catch (error: Exception){
                 val a = error

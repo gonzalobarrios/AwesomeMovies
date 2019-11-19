@@ -1,4 +1,4 @@
 package com.example.awesomemovies.data.model
 
 
-data class Review (private val author: String, private val content: String)
+data class Review (val author: String, val content: String)

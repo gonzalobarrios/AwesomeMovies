@@ -156,6 +156,5 @@ class MoviesFragment : Fragment() {
 
             startActivityForResult(intent, GotoMovieDetailsRequestCode)
         }
-//        (activity!! as HomeActivity).goToMovieDetail(id)
     }
 }
