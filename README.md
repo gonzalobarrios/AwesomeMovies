@@ -1,4 +1,4 @@
-# AwesomeMovies
+# AwesomeMovies - Android (Kotlin)
 # Segundo Obligatorio - Desarrollo Android
 
 El objetivo de la entrega final es poner en práctica todos los conocimientos adquiridos a lo largo
